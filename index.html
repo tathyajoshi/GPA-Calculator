@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <title>Simple GPA Calculator</title>
+</head>
+<body>
+  <div class= "container">
+  <header>
+    <h1>Simple GPA Calculator</h1>
+  </header>
+  <div>
+    <form action="">
+      <h3>Previous semester GPA (optional)</h3>
+      <span>Cumulative GPA: <input type="number" id= "pgpa" value = '0'></span>
+      <span>Credits completed: <input type= "number" id= "pcredit" value = '0'></span>
+    </form>
+
+    <form action="">
+      <table align= "center">
+        <h3>Current semester</h3>
+        <tr>
+          <td>
+            Grade 1:
+            <select id= "g1">
+              <option value="-">-</option>
+              <option value="A">A</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B">B</option>
+              <option value="B-">B-</option>
+              <option value="C+">C+</option>
+              <option value="C">C</option>
+              <option value="C-">C-</option>
+              <option value="D+">D+</option>
+              <option value="D">D</option>
+              <option value="D-">D-</option>
+              <option value="E">E</option>
+            </select>
+          </td>
+          <td>
+            Credit 1: <input value= "0" type="number" id="c1">
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            Grade 2:
+            <select id= "g2">
+              <option value="-">-</option>
+              <option value="A">A</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B">B</option>
+              <option value="B-">B-</option>
+              <option value="C+">C+</option>
+              <option value="C">C</option>
+              <option value="C-">C-</option>
+              <option value="D+">D+</option>
+              <option value="D">D</option>
+              <option value="D-">D-</option>
+              <option value="E">E</option>
+            </select>
+          </td>
+          <td>
+            Credit 2: <input id= "c2" value= "0" type="number">
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            Grade 3:
+            <select id= "g3">
+              <option value="-">-</option>
+              <option value="A">A</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B">B</option>
+              <option value="B-">B-</option>
+              <option value="C+">C+</option>
+              <option value="C">C</option>
+              <option value="C-">C-</option>
+              <option value="D+">D+</option>
+              <option value="D">D</option>
+              <option value="D-">D-</option>
+              <option value="E">E</option>
+            </select>
+          </td>
+          <td>
+            Credit 3: <input id= "c3" value= "0" type="number">
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            Grade 4:
+            <select id= "g4">
+              <option value="-">-</option>
+              <option value="A">A</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B">B</option>
+              <option value="B-">B-</option>
+              <option value="C+">C+</option>
+              <option value="C">C</option>
+              <option value="C-">C-</option>
+              <option value="D+">D+</option>
+              <option value="D">D</option>
+              <option value="D-">D-</option>
+              <option value="E">E</option>
+            </select>
+          </td>
+          <td>
+            Credit 4: <input id= "c4" value= "0" type="number">
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            Grade 5:
+            <select id= "g5">
+              <option value="-">-</option>
+              <option value="A">A</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B">B</option>
+              <option value="B-">B-</option>
+              <option value="C+">C+</option>
+              <option value="C">C</option>
+              <option value="C-">C-</option>
+              <option value="D+">D+</option>
+              <option value="D">D</option>
+              <option value="D-">D-</option>
+              <option value="E">E</option>
+            </select>
+          </td>
+          <td>
+            Credit 5: <input id= "c5" value= "0" type="number">
+          </td>
+        </tr>
+      </table>
+      <br>
+      <button type= "button" onclick= "Calculate()"> Calculate</button>
+    </form>
+    <br>
+    <label id="answer"></label>
+
+  </div>
+
+  <script language = "JavaScript">
+
+    var grades = ['A','A-','B+','B','B-','C+','C','C-','D+','D','D-','E','-'];
+    var points = [4,3.7,3.3,3,2.7,2.4,2.1,1.8,1.5,1.2,0.9,0,0];
+
+    function totalCredits() {
+      let c1 = Number(document.getElementById('c1').value);
+      let c2 = Number(document.getElementById('c2').value);
+      let c3 = Number(document.getElementById('c3').value);
+      let c4 = Number(document.getElementById('c4').value);
+      let c5 = Number(document.getElementById('c5').value);
+      let pCredit = Number(document.getElementById('pcredit').value);
+      return c1+c2+c3+c4+c5+pCredit;
+    }
+
+    function priorGradePoints() {
+      let pGpa = Number(document.getElementById('pgpa').value);
+      let pCredit = Number(document.getElementById('pcredit').value);
+
+      return pGpa*pCredit;
+
+    }
+
+    function Calculate() {
+
+      var gradePoints = 0;
+      for(i=1; i<=5 ; i++){
+        let grade = document.getElementById(`g${i}`).value;
+        let index = grades.indexOf(grade);
+        let point = points[index];
+        let credit = Number(document.getElementById(`c${i}`).value);
+        gradePoints+= point*credit;
+      }
+
+      gradePoints = gradePoints + priorGradePoints();
+      var gpa =  gradePoints/totalCredits();
+      document.getElementById('answer').innerHTML = gpa.toFixed(2);
+    }
+
+
+
+  </script>
+</body>
+</html>
